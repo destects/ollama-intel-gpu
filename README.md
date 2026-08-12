@@ -2,7 +2,7 @@
 
 Docker image that runs [Ollama](https://ollama.com) on Intel Arc GPUs using [Intel IPEX-LLM](https://github.com/ipex-llm/ipex-llm). Drop-in replacement for the standard Nvidia-based Ollama container — same API on port 11434.
 
-**Supported GPUs:** Intel Arc B580, A770, A750, A380, and other Arc series.
+**Supported GPUs:** Intel Xe Graphics, Intel Arc Pro B70, Arc B580, A770, A750, A380, and other supported Arc-series GPUs.
 
 ## Install on Unraid
 
@@ -48,9 +48,9 @@ If you're running [Open WebUI](https://github.com/open-webui/open-webui) on Unra
 
 ### Requirements
 
-- Intel Arc GPU (B580, A770, A750, or other Arc series)
+- Intel Xe Graphics or Intel Arc GPU (including Arc Pro B70)
 - `/dev/dri` device nodes available on the host
-- Host kernel must have the i915 driver loaded
+- Host kernel must support the GPU; Arc Pro B70 and newer Xe GPUs require the `xe` driver, while older GPUs use `i915`
 
 ### Docker Run
 
@@ -109,4 +109,4 @@ curl http://localhost:11434/api/generate -d '{
 
 - **Base:** Ubuntu 24.04
 - **IPEX-LLM:** v2.3.0 nightly (Ollama portable build optimised for Intel GPUs)
-- **Intel GPU drivers:** IGC v2.8.3, Compute Runtime 25.09.32961.7, Level-Zero Loader v1.21.9
+- **Intel GPU drivers:** IGC v2.32.7, Compute Runtime 26.14.37833.4, Level-Zero Loader v1.28.2

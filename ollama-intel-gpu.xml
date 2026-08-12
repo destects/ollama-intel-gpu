@@ -10,9 +10,9 @@
   <Support>https://github.com/SpaceinvaderOne/ollama-intel-gpu</Support>
   <Project>https://github.com/SpaceinvaderOne/ollama-intel-gpu</Project>
   <ReadMe/>
-  <Overview>Ollama for Intel Arc GPUs (B580, A770, A750, etc.) powered by Intel IPEX-LLM.&#13;
+  <Overview>Ollama for Intel Xe Graphics and Arc GPUs (including Arc Pro B70) powered by Intel IPEX-LLM.&#13;
 Drop-in replacement for the standard Ollama container &#x2014; exposes the same API on port 11434.&#13;
-Requires an Intel Arc GPU </Overview>
+Requires a supported Intel Xe Graphics or Arc GPU </Overview>
   <Category>AI: Tools:</Category>
   <WebUI>http://[IP]:[PORT:11434]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/spaceinvaderone/intel-ollama/main/ollama-intel-gpu.xml</TemplateURL>
@@ -23,7 +23,7 @@ Requires an Intel Arc GPU </Overview>
   <DateInstalled>1775244834</DateInstalled>
   <DonateText/>
   <DonateLink/>
-  <Requires>Intel Arc GPU (B580, A770, A750, or other Arc series) with kernel driver loaded.</Requires>
+  <Requires>Intel Xe Graphics or Arc GPU (including Arc Pro B70) with the appropriate kernel driver loaded (`xe` for Arc Pro B70 and newer Xe GPUs; `i915` for older GPUs).</Requires>
   <Config Name="Model Storage" Target="/root/.ollama" Default="/mnt/user/appdata/ollama-intel-gpu" Mode="rw" Description="Path on the host for persistent model storage. Models are large (4-20 GB each)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/ollama-intel-gpu</Config>
   <Config Name="Ollama API Port" Target="11434" Default="11434" Mode="tcp" Description="Port for the Ollama API." Type="Port" Display="always" Required="true" Mask="false">11434</Config>
   <Config Name="OLLAMA_ORIGINS" Target="OLLAMA_ORIGINS" Default="*" Mode="" Description="Allowed origins for CORS. Set to * to allow Open WebUI and other frontends to connect." Type="Variable" Display="always" Required="false" Mask="false">*</Config>
