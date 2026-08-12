@@ -61,15 +61,17 @@ RUN apt-get update && \
 # ---------------------------------------------------------------------------
 # Step 2: Install Intel GPU userspace drivers
 # ---------------------------------------------------------------------------
-RUN mkdir -p /tmp/gpu && cd /tmp/gpu && \
-    wget -q https://github.com/oneapi-src/level-zero/releases/download/${LEVEL_ZERO_LOADER_VERSION}/${LEVEL_ZERO_LOADER_DEB} && \
-    wget -q https://github.com/intel/intel-graphics-compiler/releases/download/${IGC_VERSION}/${IGC_CORE_DEB} && \
-    wget -q https://github.com/intel/intel-graphics-compiler/releases/download/${IGC_VERSION}/${IGC_OPENCL_DEB} && \
-    wget -q https://github.com/intel/compute-runtime/releases/download/${COMPUTE_RT_VERSION}/${LEVEL_ZERO_GPU_DEB} && \
-    wget -q https://github.com/intel/compute-runtime/releases/download/${COMPUTE_RT_VERSION}/${OPENCL_ICD_DEB} && \
-    wget -q https://github.com/intel/compute-runtime/releases/download/${COMPUTE_RT_VERSION}/${GMMLIB_DEB} && \
-    dpkg -i *.deb && \
-    rm -rf /tmp/gpu
+RUN apt-get update && \
+    apt-get install --no-install-recommends -q -y software-properties-common && \
+    add-apt-repository -y ppa:kobuk-team/intel-graphics && \
+    apt-get update && \
+    apt-get install --no-install-recommends -q -y \
+        libze-intel-gpu1 \
+        libze1 \
+        intel-metrics-discovery \
+        intel-opencl-icd \
+        intel-gsc && \
+    rm -rf /var/lib/apt/lists/*
 
 # ---------------------------------------------------------------------------
 # Step 3: Download and extract IPEX-LLM Ollama portable package
