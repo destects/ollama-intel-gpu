@@ -6,7 +6,7 @@
 # the standard Nvidia-based Ollama container.
 #
 # Tested with: Intel Arc B580 12 GB
-# Compatible:  Intel Arc A770, A750, A380, and other Arc series
+# Compatible:  Intel Xe Graphics, Intel Arc Pro B70, and other Arc series
 #
 # Build:
 #   docker build -t ollama-intel-gpu:latest .
@@ -29,19 +29,19 @@ ENV TZ=Etc/UTC
 # ---------------------------------------------------------------------------
 
 # Intel Graphics Compiler (IGC)
-ARG IGC_VERSION=v2.8.3
-ARG IGC_CORE_DEB=intel-igc-core-2_2.8.3+18762_amd64.deb
-ARG IGC_OPENCL_DEB=intel-igc-opencl-2_2.8.3+18762_amd64.deb
+ARG IGC_VERSION=v2.32.7
+ARG IGC_CORE_DEB=intel-igc-core-2_2.32.7+21184_amd64.deb
+ARG IGC_OPENCL_DEB=intel-igc-opencl-2_2.32.7+21184_amd64.deb
 
 # Intel Compute Runtime (Level-Zero GPU driver, OpenCL ICD, gmmlib)
-ARG COMPUTE_RT_VERSION=25.09.32961.7
-ARG LEVEL_ZERO_GPU_DEB=intel-level-zero-gpu_1.6.32961.7_amd64.deb
-ARG OPENCL_ICD_DEB=intel-opencl-icd_25.09.32961.7_amd64.deb
-ARG GMMLIB_DEB=libigdgmm12_22.6.0_amd64.deb
+ARG COMPUTE_RT_VERSION=26.14.37833.4
+ARG LEVEL_ZERO_GPU_DEB=libze-intel-gpu1_26.14.37833.4-0_amd64.deb
+ARG OPENCL_ICD_DEB=intel-opencl-icd_26.14.37833.4-0_amd64.deb
+ARG GMMLIB_DEB=libigdgmm12_22.9.0_amd64.deb
 
 # Level-Zero Loader
-ARG LEVEL_ZERO_LOADER_VERSION=v1.21.9
-ARG LEVEL_ZERO_LOADER_DEB=level-zero_1.21.9+u24.04_amd64.deb
+ARG LEVEL_ZERO_LOADER_VERSION=v1.28.2
+ARG LEVEL_ZERO_LOADER_DEB=level-zero_1.28.2+u24.04_amd64.deb
 
 # IPEX-LLM Ollama portable package
 ARG IPEXLLM_RELEASE_REPO=ipex-llm/ipex-llm
