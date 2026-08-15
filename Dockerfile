@@ -13,8 +13,8 @@ RUN apt-get update && apt-get -y upgrade && apt-get install -y --no-install-reco
 # Download and extract the latest Intel IPEX-LLM portable build
 # Note: Check the intel/ipex-llm GitHub releases for the absolute latest version
 RUN wget https://github.com/alyssaholland99/ipex-llm/releases/download/v3.0.0/ollama-ipex-portable.tgz \
-    && tar -xvf ollama-ipex-llm-*-ubuntu.tgz \
-    && rm ollama-ipex-llm-*-ubuntu.tgz
+    && tar -xvf ollama-ipex-*.tgz \
+    && rm ollama-ipex-*.tgz
 
 # Set environment variables optimized for the B70's 32GB VRAM
 ENV PATH="/llm/ollama:$PATH"
