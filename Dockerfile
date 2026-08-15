@@ -28,7 +28,8 @@ RUN apt-get update && \
 # Note: Check the intel/ipex-llm GitHub releases for the absolute latest version
 RUN wget https://github.com/alyssaholland99/ipex-llm/releases/download/v3.0.0/ollama-ipex-portable.tgz \
     && tar -xvf ollama-ipex-*.tgz \
-    && rm ollama-ipex-*.tgz
+    && rm ollama-ipex-*.tgz \
+    && mv ollama-ipex-portable ollama
 
 # Set environment variables optimized for the B70's 32GB VRAM
 ENV PATH="/llm/ollama:$PATH"
@@ -37,4 +38,5 @@ ENV ONEAPI_DEVICE_SELECTOR="level_zero:0"
 ENV OLLAMA_NUM_CTX=16384 
 
 EXPOSE 11434
-ENTRYPOINT ["/llm/ollama/start-ollama.sh"]
+ENTRYPOINT ["/llm/ollama/start.sh"]
+CMD ["serve"]
