@@ -37,11 +37,12 @@ RUN wget https://github.com/alyssaholland99/ipex-llm/releases/download/v3.0.0/ol
 ENV PATH="/llm/ollama:$PATH"
 ENV OLLAMA_HOST="0.0.0.0"
 ENV ONEAPI_DEVICE_SELECTOR="level_zero:0"
+ENV ZES_ENABLE_SYSMAN=1
 ENV OLLAMA_NUM_CTX=16384 
 
 ENV SYCL_CACHE_PERSISTENT=1
 ENV SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=1
-ENV LD_LIBRARY_PATH="/llm/ollama:/usr/local/lib:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+ENV LD_LIBRARY_PATH="/llm/ollama:/usr/local/lib:/usr/lib/x86_64-linux-gnu"
 
 EXPOSE 11434
 ENTRYPOINT ["/llm/ollama/start.sh"]
