@@ -20,7 +20,7 @@ RUN apt-get update && \
     libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd intel-gsc \
     && rm -rf /var/lib/apt/lists/* \
     && wget -qO - https://repositories.intel.com/gpu/intel-graphics.key | gpg --yes --dearmor --output /usr/share/keyrings/intel-graphics.gpg \
-    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu 26.04/intel-omix/0.3 unified" | \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu resolute/intel-omix/0.3 unified" | \
     tee /etc/apt/sources.list.d/intel-gpu-26.04.list \
     && apt update \
     && apt install -y intel-omix \
