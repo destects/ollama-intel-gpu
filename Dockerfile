@@ -1,14 +1,33 @@
+ENV VERSION_CODENAME="26.04"
 FROM ubuntu:26.04
 
 WORKDIR /llm
 
-# Install prerequisites and Intel client GPU drivers for Battlemage (Xe2)
-RUN apt-get update && apt-get -y upgrade && apt-get install -y --no-install-recommends \
+##############################################################################
+# from https://dgpu-docs.intel.com/installation-guides/installing-omix.html  #
+##############################################################################
+
+# Update your system with the latest Intel GPG public key 
+RUN wget -qO - https://repositories.intel.com/gpu/intel-graphics.key |
+    sudo gpg --yes --dearmor --output /usr/share/keyrings/intel-graphics.gpg
+
+# Installation
+RUN apt-get update && \
+    apt-get -y upgrade && \
+    apt-get install -y --no-install-recommends \
     software-properties-common curl wget clinfo pciutils \
     && add-apt-repository -y ppa:kobuk-team/intel-graphics \
     && apt-get update && apt-get install -y --no-install-recommends \
     libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd intel-gsc \
     && rm -rf /var/lib/apt/lists/*
+    
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu ${VERSION_CODENAME}/intel-omix/0.3 unified" | \
+    tee /etc/apt/sources.list.d/intel-gpu-${VERSION_CODENAME}.list
+    apt update
+
+    apt install -y intel-omix
+    apt install -y intel-omix-dev
+
 
 # Download and extract the latest Intel IPEX-LLM portable build
 # Note: Check the intel/ipex-llm GitHub releases for the absolute latest version
