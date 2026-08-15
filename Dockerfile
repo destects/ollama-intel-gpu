@@ -18,14 +18,12 @@ RUN apt-get update && \
     && add-apt-repository -y ppa:kobuk-team/intel-graphics \
     && apt-get update && apt-get install -y --no-install-recommends \
     libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd intel-gsc \
-    && rm -rf /var/lib/apt/lists/*
-    
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu 26.04/intel-omix/0.3 unified" | \
-    tee /etc/apt/sources.list.d/intel-gpu-26.04.list
-    apt update
-
-    apt install -y intel-omix
-    apt install -y intel-omix-dev
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu 26.04/intel-omix/0.3 unified" | \
+    tee /etc/apt/sources.list.d/intel-gpu-26.04.list \
+    && apt update \
+    && apt install -y intel-omix \
+    && apt install -y intel-omix-dev
 
 
 # Download and extract the latest Intel IPEX-LLM portable build
