@@ -29,7 +29,9 @@ RUN apt-get update && \
 RUN wget https://github.com/alyssaholland99/ipex-llm/releases/download/v3.0.0/ollama-ipex-portable.tgz \
     && tar -xvf ollama-ipex-*.tgz \
     && rm ollama-ipex-*.tgz \
-    && mv ollama-ipex-portable ollama
+    && mv ollama-ipex-portable ollama \
+    && cd ollama \
+    && rm -f libc.so.6 libstdc++.so.6 libdl.so.2 libm.so.6 libpthread.so.0 libresolv.so.2 libgcc_s.so.1 librt.so.1
 
 # Set environment variables optimized for the B70's 32GB VRAM
 ENV PATH="/llm/ollama:$PATH"
