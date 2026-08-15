@@ -7,8 +7,8 @@ WORKDIR /llm
 ##############################################################################
 
 # Update your system with the latest Intel GPG public key 
-RUN wget -qO - https://repositories.intel.com/gpu/intel-graphics.key |
-    gpg --yes --dearmor --output /usr/share/keyrings/intel-graphics.gpg
+#RUN wget -qO - https://repositories.intel.com/gpu/intel-graphics.key |
+#    gpg --yes --dearmor --output /usr/share/keyrings/intel-graphics.gpg
 
 # Installation
 RUN apt-get update && \
