@@ -1,4 +1,3 @@
-ENV VERSION_CODENAME="26.04"
 FROM ubuntu:26.04
 
 WORKDIR /llm
@@ -21,8 +20,8 @@ RUN apt-get update && \
     libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd intel-gsc \
     && rm -rf /var/lib/apt/lists/*
     
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu ${VERSION_CODENAME}/intel-omix/0.3 unified" | \
-    tee /etc/apt/sources.list.d/intel-gpu-${VERSION_CODENAME}.list
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu 26.04/intel-omix/0.3 unified" | \
+    tee /etc/apt/sources.list.d/intel-gpu-26.04.list
     apt update
 
     apt install -y intel-omix
